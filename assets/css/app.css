@@ -1,0 +1,28 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: "montserrat", sans-serif;
+}
+
+.animate {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-name: slideIn;
+}
+
+@keyframes slideIn {
+    0% {
+      transform: translateY(5rem);
+      opacity: 0;
+    }
+    100% {
+      transform:translateY(3rem);
+      opacity: 1;
+    }
+    0% {
+      transform: translateY(5rem);
+      opacity: 0;
+    }
+}

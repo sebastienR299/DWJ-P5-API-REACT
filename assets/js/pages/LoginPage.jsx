@@ -1,48 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import authAPI from "../services/authAPI";
 // reactstrap components
 import {
-    FormGroup,
-    Form,
-    Input,
     Button,
-    Row,
-    Col
-  } from "reactstrap";
-import Axios from 'axios';
+    Col, Form, FormGroup,
+    Input,
+    Row
+} from "reactstrap";
+import AuthContext from '../contexts/AuthContext';
 
-const LoginPage = (props) => {
+const LoginPage = ({onLogin, history}) => {
+
+    const { setIsAuthenticated } = useContext(AuthContext);
 
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
     });
-
     const [error, setError] = useState("");
 
-    const handleChange = (event) => {
-        const value = event.currentTarget.value;
-        const name = event.currentTarget.name;
+    // Gestion des champs
+    const handleChange = ({currentTarget}) => {
+        const {value, name} = currentTarget;
 
         setCredentials({...credentials, [name]: value});
     };
 
+    // Gestion du submit
     const handleSubmit = async event => {
         event.preventDefault();
         console.log(credentials);
 
         try {
-            const token = await Axios
-            .post("http://localhost:8000/api/login_check", credentials)
-            .then(response => response.data.token)
-
+            await authAPI.authenticate(credentials);
+            console.log("Connexion OK");
             setError("");
-
-            // Stocke le Token dans le localStorage
-            window.localStorage.setItem("authToken", token);
-
-            // On préviens axios qu'on à un header par défaut sur nos futurs requêtes
-            Axios.defaults.headers["Authorization"] = "Bearer " + token;
-
+            setIsAuthenticated(true);
+            // Redirige l'utilisateur vers la page des customers après une connexion réussie
+            history.replace("/customers");
         } catch (error) {
             setError("Aucun compte ne possède cette adresse ou les informations ne correspondent pas !");
         }

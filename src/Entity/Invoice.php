@@ -57,8 +57,6 @@ class Invoice
     /**
      * @ORM\Column(type="datetime")
      * @Groups({"invoices_read", "customers_read"})
-     * @Assert\DateTime(message="La date doit être au format YYYY-MM-DD")
-     * @Assert\NotBlank(message="La date d'envoi doit être renseignée")
      */
     private $sentAt;
 
@@ -79,7 +77,7 @@ class Invoice
      * @Groups({"invoices_read"})
      * @Assert\NotBlank(message="Le client de la facture doit être renseigné")
      */
-    private $customer;
+    private $customer;     
 
     /**
      * @ORM\Column(type="integer")

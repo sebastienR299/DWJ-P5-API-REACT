@@ -6,6 +6,7 @@ import {
 } from "reactstrap";
 import Paginations from "../components/Paginations";
 import CustomersAPI from "../services/customersAPI";
+import { Link } from 'react-router-dom';
 
 const CustomersPage = (props) => {
 
@@ -73,7 +74,11 @@ const CustomersPage = (props) => {
 
         <Fragment>
 
-            <h1>Liste des clients</h1>
+            <div className="mb-2 d-flex justify-content-between align-items-center">
+                <h1>Liste des clients</h1>
+                <Link to="/customers/new" className="btn btn-primary">Créer un client</Link>
+            </div>
+            
 
             <FormGroup>
                 <Input

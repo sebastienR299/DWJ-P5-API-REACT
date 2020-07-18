@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use ApiPlatform\Core\EventListener\EventPriorities;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class InvoiceChronoSubscriber implements EventSubscriberInterface {
 
@@ -33,9 +34,19 @@ class InvoiceChronoSubscriber implements EventSubscriberInterface {
         $invoice = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();
 
-        if($invoice instanceof Invoice && $method === "POST") {
-            $nextChrono = $this->repository->findLastChrono($this->security->getUser());
-            $invoice->setChrono($nextChrono);
+        if ($invoice instanceof Invoice && $method === "POST") {
+            
+            $user = $this->security->getUser();
+
+            if ($user !== $invoice->getCustomer()->getUser()) {
+            throw new AccessDeniedHttpException("Game over: This customer is not one of yours. Try again!");
+            }
+            $invoice->setChrono($this->repository->findLastChrono($user));
+            
+            if(empty($invoice->getSentAt())) {
+                $invoice->setSentAt(new \DateTime());
+            }
+
         }
     }
 

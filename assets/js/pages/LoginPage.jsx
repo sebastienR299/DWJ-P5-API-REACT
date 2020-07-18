@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react';
-import authAPI from "../services/authAPI";
+import React, { useContext, useState } from 'react';
 // reactstrap components
 import {
     Button,
-    Col, Form, FormGroup,
-    Input,
+    Col, Form,
     Row
 } from "reactstrap";
+import Field from "../components/forms/Field";
 import AuthContext from '../contexts/AuthContext';
+import authAPI from "../services/authAPI";
 
 const LoginPage = ({onLogin, history}) => {
 
@@ -29,11 +29,9 @@ const LoginPage = ({onLogin, history}) => {
     // Gestion du submit
     const handleSubmit = async event => {
         event.preventDefault();
-        console.log(credentials);
 
         try {
             await authAPI.authenticate(credentials);
-            console.log("Connexion OK");
             setError("");
             setIsAuthenticated(true);
             // Redirige l'utilisateur vers la page des customers après une connexion réussie
@@ -52,35 +50,28 @@ const LoginPage = ({onLogin, history}) => {
         >
             <Row>
                 <Col md="6">
-                    <FormGroup>
-                        <Input
-                        value={credentials.username}
-                        onChange={handleChange}
-                        id="emailConnexion"
-                        placeholder="name@example.com"
-                        type="email"
-                        name="username"
-                        bsSize="lg"
-                        className={error ? "is-invalid" : null}
-                        />
-                        {error ? <p className="invalid-feedback">
-                            {error}
-                        </p>
-                        : null}
-                    </FormGroup>
+                    <Field
+                    label="Adresse Email"
+                    value={credentials.username}
+                    onChange={handleChange}
+                    id="emailConnexion"
+                    placeholder="name@example.com"
+                    type="email"
+                    name="username"
+                    error={error}
+                    />
                 </Col>
                 <Col md="6">
-                    <FormGroup>
-                        <Input
-                        value={credentials.password}
-                        onChange={handleChange}
-                        id="passwordConnexion"
-                        placeholder="Mot de passe"
-                        type="password"
-                        name="password"
-                        bsSize="lg"
-                        />
-                    </FormGroup>
+                    <Field
+                    label="Mot de passe"
+                    value={credentials.password}
+                    onChange={handleChange}
+                    id="passwordConnexion"
+                    placeholder="Mot de passe"
+                    type="password"
+                    name="password"
+                    error={error}
+                    />
                 </Col>
             </Row>
             <Button

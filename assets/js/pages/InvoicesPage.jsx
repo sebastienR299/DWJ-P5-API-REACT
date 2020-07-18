@@ -6,6 +6,7 @@ import {
 } from "reactstrap";
 import Paginations from "../components/Paginations";
 import invoicesAPI from "../services/invoicesAPI";
+import { Link } from "react-router-dom";
 
 const STATUS_CLASSES = {
     PAID: "success",
@@ -86,7 +87,10 @@ const InvoicesPage = (props) => {
 
     return ( 
         <>
-            <h1>Liste des factures</h1>
+            <div className="mb-2 d-flex justify-content-between align-items-center">
+                <h1>Liste des factures</h1>
+                <Link to="/invoices/new" className="btn btn-primary">Créer une facture</Link>
+            </div>
 
             <FormGroup>
                 <Input
@@ -119,7 +123,7 @@ const InvoicesPage = (props) => {
                             <td className="text-center"><span className={"badge badge-" + STATUS_CLASSES[invoice.status]}>{STATUS_LABELS[invoice.status]}</span></td>
                             <td className="text-center">{invoice.amount.toLocaleString()} €</td>
                             <td className="text-center">
-                                <button className="btn btn-sm btn-primary">Editer</button>
+                                <Link to={"/invoices/" + invoice.id} className="btn btn-sm btn-primary">Editer</Link>
                                 <button 
                                 className="btn btn-sm btn-danger"
                                 onClick={() => handleDelete(invoice.id)}

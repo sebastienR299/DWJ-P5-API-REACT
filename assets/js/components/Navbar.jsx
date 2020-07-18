@@ -41,7 +41,7 @@ const NavbarHome = ({history}) => {
                 </NavbarBrand>
                 <Col md="2">
                     <NavLink to="/invoices" className="text-white">Factures</NavLink>
-                    <NavLink to="/customers" className="text-white ml-2">Clients</NavLink>
+                    <NavLink to="/customers" className="text-white ml-4">Clients</NavLink>
                 </Col>
                 <Col md="2">
                     <UncontrolledDropdown>
@@ -56,13 +56,17 @@ const NavbarHome = ({history}) => {
                         <DropdownMenu className="animate">
                             {!isAuthenticated ?
                             <>
-                                <DropdownItem href="#" onClick={e => e.preventDefault()}>
+                                <DropdownItem onClick={e => e.preventDefault()}>
+                                <Link to="/register">
                                     <span className="text-warning align-middle"><i className="ni ni-circle-08 mr-3 ni-2x"></i></span>
                                     <span className="font-weight-bold">Inscription</span>
+                                </Link>
                                 </DropdownItem>
-                                <DropdownItem href="#" onClick={e => e.preventDefault()}>
+                                <DropdownItem onClick={e => e.preventDefault()}>
+                                <Link to="/login">
                                     <span className="text-success align-middle"><i className="ni ni-lock-circle-open ni-2x mr-3"></i></span>
                                     <span className="font-weight-bold">Connexion</span>
+                                </Link>
                                 </DropdownItem>
                             </>
                             :

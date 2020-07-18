@@ -3,13 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Invoice;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class InvoicesIncrementationController {
 
-
-    public function __invoke(Invoice $data)
-    {
-        dd($data);
-    }
 
 }

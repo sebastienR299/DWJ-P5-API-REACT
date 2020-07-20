@@ -16,6 +16,7 @@ import {
   NavbarBrand,
   UncontrolledCollapse,
 } from "reactstrap";
+import { toast } from 'react-toastify';
 
 const NavbarHome = ({history}) => {
 
@@ -24,6 +25,7 @@ const NavbarHome = ({history}) => {
     const handleLogout = () => {
         authAPI.logout();
         setIsAuthenticated(false);
+        toast.info("Vous êtes désormais déconnecté 😁");
         // Redirige l'utilisateur vers la page de login une fois déconnecter
         history.push("/login");
     }

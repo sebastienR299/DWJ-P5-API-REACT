@@ -3,6 +3,7 @@ import { Form, FormGroup, Button } from 'reactstrap';
 import Field from '../components/forms/Field';
 import { Link } from 'react-router-dom';
 import customersAPI from "../services/customersAPI";
+import { toast } from 'react-toastify';
 
 const CustomerPage = ({match, history}) => {
 
@@ -35,8 +36,7 @@ const CustomerPage = ({match, history}) => {
             // Injection dans le state customer
             setCustomer({firstName, lastName, email, company});
         } catch(error) {
-            console.log(error.response);
-            // TODO : notification flash message d'erreur
+            toast.error("Le client n'as pas pu être chargé");
             history.replace("/customers");
         }
     }
@@ -61,21 +61,19 @@ const CustomerPage = ({match, history}) => {
 
         try {
 
+            setErrors({});
             if(editing) {
                 await customersAPI.update(id, customer);
 
-                // TODO : Flash notification de succès
-
-                console.log(response.data);
+                toast.success("Le client à bien été modifié");
             } else {
                 await customersAPI.create(customer);
 
-                // TODO : Flash notification de succès
+                toast.success("Le client à bien été enregistré");
 
                 history.replace("/customers");
             }
-
-            setErrors({});
+            
         } catch({response}) {
             const {violations} = response.data
             if(violations) {
@@ -85,6 +83,7 @@ const CustomerPage = ({match, history}) => {
                 });
                 setErrors(apiErrors);
             }
+            toast.error("Des erreurs dans votre formulaire");
         }
     }
 

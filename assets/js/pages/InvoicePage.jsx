@@ -5,6 +5,7 @@ import Select from "../components/forms/Select";
 import { Link } from 'react-router-dom';
 import customerAPI from "../services/customersAPI";
 import invoicesAPI from "../services/invoicesAPI";
+import { toast } from 'react-toastify';
 
 const InvoicePage = ({history, match}) => {
 
@@ -33,9 +34,8 @@ const InvoicePage = ({history, match}) => {
             // Selectionne par défaut le premier customer dans la liste déroulante (Evite problème de validation)
             if(!invoice.customer) setInvoice({invoice, customer: data[0].id});
         } catch(error) {
+            toast.error("Impossible de charger les clients");
             history.replace("/invoices");
-            // TODO Flash notification error
-            console.log(error.response);
         }
     }
 
@@ -45,8 +45,7 @@ const InvoicePage = ({history, match}) => {
             const { amount, status, customer } = await invoicesAPI.find(id);
             setInvoice({amount, status, customer: customer.id});
         } catch (error) {
-            console.log(error.response);
-            // TODO FLASH notification error
+            toast.error("Impossible de charger la facture");
             history.replace("/invoices");
         }
     }
@@ -77,14 +76,13 @@ const InvoicePage = ({history, match}) => {
         try {
             if(editing) {
                 const response = await invoicesAPI.update(id, invoice);
-                // TODO Flash notification succès
+                toast.success("La facture à bien été modifiée");
                 history.replace("/invoices");
             } else {
                 const response = await invoicesAPI.create(invoice);
-                // TODO : Flash notification success
+                toast.success("La facture à bien été enregistrée");
                 history.replace("/invoices");
             }
-            // TODO : Flash notification
         } catch({response}) {
             const {violations} = response.data
             if(violations) {
@@ -94,6 +92,7 @@ const InvoicePage = ({history, match}) => {
                 });
                 setErrors(apiErrors);
             }
+            toast.error("Désolé une erreur est survenue");
         }
     }
 

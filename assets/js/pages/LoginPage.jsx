@@ -8,6 +8,7 @@ import {
 import Field from "../components/forms/Field";
 import AuthContext from '../contexts/AuthContext';
 import authAPI from "../services/authAPI";
+import { toast } from 'react-toastify';
 
 const LoginPage = ({onLogin, history}) => {
 
@@ -34,10 +35,12 @@ const LoginPage = ({onLogin, history}) => {
             await authAPI.authenticate(credentials);
             setError("");
             setIsAuthenticated(true);
+            toast.success("Vous êtes à présent connecté 😺");
             // Redirige l'utilisateur vers la page des customers après une connexion réussie
             history.replace("/customers");
         } catch (error) {
             setError("Aucun compte ne possède cette adresse ou les informations ne correspondent pas !");
+            toast.error("Une erreur est survenue");
         }
     };
 

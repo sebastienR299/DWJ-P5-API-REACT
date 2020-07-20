@@ -3,6 +3,7 @@ import { Form, FormGroup, Button } from 'reactstrap';
 import Field from '../components/forms/Field';
 import { Link } from 'react-router-dom';
 import userAPI from "../services/userAPI";
+import { toast } from 'react-toastify';
 
 const RegisterPage = ({history}) => {
 
@@ -37,12 +38,14 @@ const RegisterPage = ({history}) => {
         if(user.password !== user.passwordConfirm) {
             apiErrors.passwordConfirm = "Votre confirmation de mot de passe n'est pas conforme avec le mot de passe";
             setErrors(apiErrors);
+            toast.error("La confirmation de mot de passe n'est pas bonne");
             return;
         }
 
         try {
             const response = await userAPI.register(user);
             // TODO : Flash notification success
+            toast.success("Vous êtes désormais inscrit, vous pouvez vous connecter !");
             setErrors({});
             history.replace("/login");
         } catch ({response}) {
@@ -54,6 +57,7 @@ const RegisterPage = ({history}) => {
                 });
                 setErrors(apiErrors);
             }
+            toast.error("Des erreurs dans votre formulaire !");
         }
     }
 

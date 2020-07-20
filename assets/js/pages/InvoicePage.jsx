@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import customerAPI from "../services/customersAPI";
 import invoicesAPI from "../services/invoicesAPI";
 import { toast } from 'react-toastify';
+import TableLoader from '../components/Loaders/TableLoader';
 
 const InvoicePage = ({history, match}) => {
 
@@ -14,7 +15,7 @@ const InvoicePage = ({history, match}) => {
     const [invoice, setInvoice] = useState({
         amount: "",
         customer: "",
-        status: ""
+        status: "DEFAULT"
     });
 
     const [errors, setErrors] = useState({
@@ -129,11 +130,13 @@ const InvoicePage = ({history, match}) => {
             <Select
             name="status"
             label="Status"
+            defaultValue={"DEFAULT"}
             value={invoice.status}
             error={errors.status}
             onChange={handleChange}
             >
 
+            <option value="DEFAULT" disabled>Choisir un status..</option>
             <option value="SENT">Envoyée</option>
             <option value="PAID">Payée</option>
             <option value="CANCELLED">Annulée</option>
@@ -146,7 +149,6 @@ const InvoicePage = ({history, match}) => {
             </FormGroup>
 
         </Form>
-
         </>
 
      );

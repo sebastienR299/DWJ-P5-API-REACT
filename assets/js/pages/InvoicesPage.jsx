@@ -138,9 +138,10 @@ const InvoicesPage = (props) => {
                         </tr>
                     )}
                 </tbody>
-                ||
-                <TableLoader/> }
+                }
             </table>
+
+            {loading && <TableLoader/> }
 
             {filteredInvoices.length > itemsPerPage ?
             <Paginations 

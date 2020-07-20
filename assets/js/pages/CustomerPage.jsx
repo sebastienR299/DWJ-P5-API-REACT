@@ -64,13 +64,11 @@ const CustomerPage = ({match, history}) => {
             setErrors({});
             if(editing) {
                 await customersAPI.update(id, customer);
-
                 toast.success("Le client à bien été modifié");
+                history.replace("/customers");
             } else {
                 await customersAPI.create(customer);
-
                 toast.success("Le client à bien été enregistré");
-
                 history.replace("/customers");
             }
             

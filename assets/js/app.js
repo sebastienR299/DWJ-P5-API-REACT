@@ -24,13 +24,23 @@ import "../css/argon-design-system-react.css";
 import "../vendor/font-awesome/css/font-awesome.min.css";
 import "../vendor/nucleo/css/nucleo.css";
 
-
-
 authAPI.setup();
 
-const App = () => {
+const App = (props) => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());
+    // State concernant le menu hamburger
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    // Fonction pour fermer le menu
+    const handleCloseMenu = () => {
+        setMenuOpen(false);
+    }
+
+    // Fonction pour avoir l'état inverse de celui en place actuellement
+    const handleChangeState = () => {
+        setMenuOpen(!menuOpen);
+    }
 
     // withRouter permet d'étendre les routes en dehors du switch
     const NavBarWithRouter = withRouter(NavbarHome);
@@ -51,13 +61,18 @@ const App = () => {
             setIsAuthenticated
         }}>
         <HashRouter>
-            <MenuWithRouter width={280} right>
-                <Link to="/customers"><i className="fa fa-address-book-o" aria-hidden="true"></i> Clients</Link>
-                <Link to="/invoices"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Factures</Link>
+            <MenuWithRouter 
+            width={280} 
+            right
+            isOpen={menuOpen}
+            onStateChange={handleChangeState}
+            >
+                <Link onClick={handleCloseMenu} to="/customers"><i className="fa fa-address-book-o" aria-hidden="true"></i> Clients</Link>
+                <Link onClick={handleCloseMenu} to="/invoices"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Factures</Link>
                 {!isAuthenticated &&
                 <Fragment>
-                <Link to="/login"><i className="fa fa-sign-in" aria-hidden="true"></i> Connexion</Link>
-                <Link to="/register"><i className="fa fa-user-plus" aria-hidden="true"></i> Inscription</Link>
+                <Link onClick={handleCloseMenu} to="/login"><i className="fa fa-sign-in" aria-hidden="true"></i> Connexion</Link>
+                <Link onClick={handleCloseMenu} to="/register"><i className="fa fa-user-plus" aria-hidden="true"></i> Inscription</Link>
                 </Fragment>
                 ||
                 <a onClick={handleLogout}><i className="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>

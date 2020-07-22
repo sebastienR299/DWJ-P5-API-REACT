@@ -15,6 +15,8 @@ import {
   Button,
   NavbarBrand,
   UncontrolledCollapse,
+  NavbarToggler,
+  Collapse,
 } from "reactstrap";
 import { toast } from 'react-toastify';
 
@@ -30,6 +32,7 @@ const NavbarHome = ({history}) => {
         history.push("/login");
     }
 
+
     return ( 
 
         <Navbar
@@ -37,23 +40,25 @@ const NavbarHome = ({history}) => {
           expand="lg"
           id="navbar-main"
         >
-            <Container>
-                <NavbarBrand md="8">
-                        <h4 className="text-white my-auto"><strong>Gestionnaires de factures</strong></h4>
+            <Container className="flex-nowrap">
+                <NavbarBrand className="bloc-navbar-title col-sm-6">
+                        <h4 className="text-white my-auto text-left"><strong>ReactInvoices</strong></h4>
                 </NavbarBrand>
-                <Col md="2">
+                <Col className="text-white col-sm-6 d-block d-lg-none text-right align-items-center">
+
+                </Col>
+                <Col className="col-md-2 d-none d-lg-block">
                     <NavLink to="/invoices" className="text-white">Factures</NavLink>
                     <NavLink to="/customers" className="text-white ml-4">Clients</NavLink>
                 </Col>
-                <Col md="2">
-                    <UncontrolledDropdown>
+                <Col className="col-md-2 d-none d-lg-block">
+                    <UncontrolledDropdown className="col-md-2 d-none d-lg-block">
                         <DropdownToggle 
-                        caret 
+                        caret
                         color="white" 
                         className="text-primary"
                         >
                             <i className="ni ni-single-02 mr-1"></i>
-                            Utilisateurs
                         </DropdownToggle>
                         <DropdownMenu className="animate">
                             {!isAuthenticated ?

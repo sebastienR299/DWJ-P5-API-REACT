@@ -64,7 +64,7 @@ const RegisterPage = ({history}) => {
     return ( 
         <>
 
-        <h1>Inscription</h1>
+        <h1 className="title-page text-center mb-4">Inscription</h1>
 
         <Form onSubmit={handleSubmit}>
             <Field 
@@ -111,9 +111,9 @@ const RegisterPage = ({history}) => {
             onChange={handleChange}
             />
 
-            <FormGroup>
-                <Button type="submit" className="btn btn-primary">S'inscrire</Button>
-                <Link to="/" className="btn btn-link">Retour au menu principale</Link>
+            <FormGroup className="group-buttons">
+                <Button type="submit" size="lg" color="primary" className="button-register">S'inscrire</Button>
+                <Link to="/" className="btn btn-link p-0 ml-5">Retour au menu principale</Link>
             </FormGroup>
 
         </Form>

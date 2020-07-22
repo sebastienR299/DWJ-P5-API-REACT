@@ -79,8 +79,8 @@ const CustomersPage = (props) => {
 
         <Fragment>
 
-            <div className="mb-2 d-flex justify-content-between align-items-center">
-                <h1>Liste des clients</h1>
+            <div className="bloc-title d-flex justify-content-between align-items-center">
+                <h1 className="title-page text-center mb-4">Clients</h1>
                 <Link to="/customers/new" className="btn btn-primary">Créer un client</Link>
             </div>
             
@@ -96,7 +96,7 @@ const CustomersPage = (props) => {
                 </Input>
             </FormGroup>
 
-            <div className="table-responsive-sm">
+            <div className="table-responsive-lg">
             <table className="table table-hover">
                 <thead>
                     <tr>

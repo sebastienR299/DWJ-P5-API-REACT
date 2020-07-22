@@ -1,7 +1,7 @@
 // Imports important
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route, Switch, withRouter } from "react-router-dom";
+import { HashRouter, Route, Switch, withRouter, Link } from "react-router-dom";
 import NavbarHome from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import AuthContext from "./contexts/AuthContext";
@@ -15,6 +15,7 @@ import InvoicePage from "./pages/InvoicePage";
 import RegisterPage from "./pages/RegisterPage";
 import { ToastContainer, toast } from 'react-toastify';
 import '../css/ReactToastify.css';
+import { slide as Menu } from "react-burger-menu";
 
 // CSS personnalisé
 import '../css/app.css';
@@ -30,7 +31,17 @@ const App = () => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());
 
+    // withRouter permet d'étendre les routes en dehors du switch
     const NavBarWithRouter = withRouter(NavbarHome);
+    const MenuWithRouter = withRouter(Menu);
+
+    const handleLogout = () => {
+        authAPI.logout();
+        setIsAuthenticated(false);
+        toast.info("Vous êtes désormais déconnecté 😁");
+        // Redirige l'utilisateur vers la page de login une fois déconnecter
+        history.push("/login");
+    }
 
     return (
 
@@ -39,7 +50,19 @@ const App = () => {
             setIsAuthenticated
         }}>
         <HashRouter>
-            <NavBarWithRouter/>
+            <MenuWithRouter width={280} right>
+                <Link to="/customers"><i className="fa fa-address-book-o" aria-hidden="true"></i> Clients</Link>
+                <Link to="/invoices"><i className="fa fa-pencil-square-o" aria-hidden="true"></i> Factures</Link>
+                {!isAuthenticated &&
+                <Fragment>
+                <Link to="/login"><i className="fa fa-sign-in" aria-hidden="true"></i> Connexion</Link>
+                <Link to="/register"><i className="fa fa-user-plus" aria-hidden="true"></i> Inscription</Link>
+                </Fragment>
+                ||
+                <a onClick={handleLogout}><i className="fa fa-sign-out" aria-hidden="true"></i> Déconnexion</a>
+                }
+            </MenuWithRouter>
+            <NavBarWithRouter />
             <main className="container pt-5">
                 <Switch>
                     <Route path="/login" component={LoginPage}/>

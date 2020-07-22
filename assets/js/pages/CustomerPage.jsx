@@ -89,7 +89,7 @@ const CustomerPage = ({match, history}) => {
         
         <>
 
-        {!editing && <h1>Créer un client</h1> || <h1>Modification du client</h1>}
+        {!editing && <h1 className="title-page text-center mb-4">Créer un client</h1> || <h1 className="title-page text-center mb-4">Modification du client</h1>}
 
         <Form onSubmit={handleSubmit}>
             <Field 
@@ -122,9 +122,9 @@ const CustomerPage = ({match, history}) => {
             value={customer.company}
             error={errors.company} />
 
-            <FormGroup>
-                <Button type="submit" className="btn btn-primary">Enregistrer</Button>
-                <Link to="/customers" className="btn btn-link">Retour à la liste</Link>
+            <FormGroup className="group-buttons">
+                <Button type="submit" size="lg" color="primary" className="button-register">Enregistrer</Button>
+                <Link to="/customers" className="btn btn-link p-0 ml-5">Retour à la liste</Link>
             </FormGroup>
         </Form>
 

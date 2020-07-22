@@ -46,7 +46,7 @@ const LoginPage = ({onLogin, history}) => {
 
     return ( 
         <>
-        <h1 className="text-center mb-4">Connexion à l'application</h1>
+        <h1 className="title-page text-center mb-4">Connexion</h1>
 
         <Form
         onSubmit={handleSubmit}
@@ -78,6 +78,7 @@ const LoginPage = ({onLogin, history}) => {
                 </Col>
             </Row>
             <Button
+            className="button-login"
             color="primary"
             size="lg"
             >

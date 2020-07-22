@@ -24,10 +24,13 @@
         "jwt-decode": "^2.2.0",
         "moment": "^2.27.0",
         "react": "^16.13.1",
+        "react-burger-menu": "^2.7.0",
         "react-content-loader": "^5.1.0",
+        "react-css-burger": "^0.2.0",
         "react-dom": "^16.13.1",
         "react-router-dom": "^5.2.0",
         "react-toastify": "^6.0.8",
-        "reactstrap": "^8.5.1"
+        "reactstrap": "^8.5.1",
+        "styled-components": "^5.1.1"
     }
 }

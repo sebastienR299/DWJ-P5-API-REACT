@@ -4,6 +4,7 @@ body, html {
     box-sizing: border-box;
     font-size: 1rem;
     font-family: "montserrat", sans-serif;
+    overflow-x: hidden;
 }
 
 .animate {
@@ -25,4 +26,144 @@ body, html {
       transform: translateY(5rem);
       opacity: 0;
     }
+}
+
+.title-page {
+  font-weight: bold;
+  border-bottom: 3px solid #2dce89;
+}
+
+/* ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ */
+/* ----------------------------------● NOTE MENU BURGER
+/* ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ */
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  right: 27px;
+  top: 20px;
+  outline-style: none!important;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #FFF;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #2dce89;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #2dce89;
+  outline-style: none!important;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #5e72e4;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.3em;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+.bm-item-list a {
+  color: #FFF;
+  display: block;
+  margin-bottom: 10px;
+  transition: all .3s ease-in-out;
+}
+
+.bm-item-list a:hover {
+  color: #2dce89;
+  transition: all .3s ease-in-out;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ */
+/* ----------------------------------● NOTE MEDIA QUERIES
+/* ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ */
+
+@media all and (min-width: 991px) {
+
+  .bm-burger-button {
+    display: none;
+  }
+
+}
+
+@media all and (max-width: 991px) {
+
+  .btn:not(:last-child) {
+    margin:  5px 0!important;
+  }
+
+}
+
+@media all and (max-width: 768px) {
+
+  .bloc-title {
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+
+  .button-login {
+    display: block!important;
+    margin: auto!important;
+  }
+
+  .group-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+}
+
+@media all and (max-width: 576px) {
+
+  .bloc-navbar-title h4 {
+    font-size: 1.5rem;
+  }
+
 }

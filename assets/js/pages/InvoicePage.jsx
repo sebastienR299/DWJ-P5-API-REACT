@@ -101,7 +101,7 @@ const InvoicePage = ({history, match}) => {
 
         <>
 
-        {editing && <h1>Modification d'une facture</h1> || <h1>Création d'une facture</h1>}
+        {editing && <h1 className="title-page text-center mb-4">Modification d'une facture</h1> || <h1 className="title-page text-center mb-4">Création d'une facture</h1>}
 
         <Form onSubmit={handleSubmit}>
             <Field
@@ -143,9 +143,9 @@ const InvoicePage = ({history, match}) => {
 
             </Select>
 
-            <FormGroup>
-                <Button type="submit" className="btn btn-primary">Enregistrer</Button>
-                <Link to="/invoices" className="btn btn-link">Retour aux factures</Link>
+            <FormGroup className="group-buttons">
+                <Button type="submit" size="lg" color="primary" className="button-register">Enregistrer</Button>
+                <Link to="/invoices" className="btn btn-link p-0 ml-5">Retour aux factures</Link>
             </FormGroup>
 
         </Form>

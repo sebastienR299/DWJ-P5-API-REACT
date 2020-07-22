@@ -10,7 +10,7 @@ import AuthContext from '../contexts/AuthContext';
 import authAPI from "../services/authAPI";
 import { toast } from 'react-toastify';
 
-const LoginPage = ({onLogin, history}) => {
+const LoginPage = ({history}) => {
 
     const { setIsAuthenticated } = useContext(AuthContext);
 
@@ -23,7 +23,6 @@ const LoginPage = ({onLogin, history}) => {
     // Gestion des champs
     const handleChange = ({currentTarget}) => {
         const {value, name} = currentTarget;
-
         setCredentials({...credentials, [name]: value});
     };
 
@@ -31,17 +30,18 @@ const LoginPage = ({onLogin, history}) => {
     const handleSubmit = async event => {
         event.preventDefault();
 
-        try {
-            await authAPI.authenticate(credentials);
+        const response = await authAPI.authenticate(credentials);
+        if (response) {
             setError("");
             setIsAuthenticated(true);
             toast.success("Vous êtes à présent connecté 😺");
             // Redirige l'utilisateur vers la page des customers après une connexion réussie
             history.replace("/customers");
-        } catch (error) {
+        } else {
             setError("Aucun compte ne possède cette adresse ou les informations ne correspondent pas !");
             toast.error("Une erreur est survenue");
         }
+
     };
 
     return ( 

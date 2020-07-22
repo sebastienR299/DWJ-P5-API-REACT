@@ -41,15 +41,15 @@ const NavbarHome = ({history}) => {
           id="navbar-main"
         >
             <Container className="flex-nowrap">
-                <NavbarBrand className="bloc-navbar-title col-sm-6">
-                        <h4 className="text-white my-auto text-left"><strong>ReactInvoices</strong></h4>
-                </NavbarBrand>
+                <Link to="/" className="bloc-navbar-title col-sm-6">
+                <h4 className="text-white my-auto text-left"><strong>REACTINVOICES</strong></h4>
+                </Link>
                 <Col className="text-white col-sm-6 d-block d-lg-none text-right align-items-center">
 
                 </Col>
                 <Col className="col-md-2 d-none d-lg-block">
-                    <NavLink to="/invoices" className="text-white">Factures</NavLink>
-                    <NavLink to="/customers" className="text-white ml-4">Clients</NavLink>
+                    <NavLink to="/invoices" className="text-white font-weight-bold">Factures</NavLink>
+                    <NavLink to="/customers" className="text-white font-weight-bold ml-4">Clients</NavLink>
                 </Col>
                 <Col className="col-md-2 d-none d-lg-block">
                     <UncontrolledDropdown className="col-md-2 d-none d-lg-block">
@@ -58,7 +58,7 @@ const NavbarHome = ({history}) => {
                         color="white" 
                         className="text-primary"
                         >
-                            <i className="ni ni-single-02 mr-1"></i>
+                            <i className="ni ni-align-center mr-1"></i>
                         </DropdownToggle>
                         <DropdownMenu className="animate">
                             {!isAuthenticated ?

@@ -16,6 +16,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { ToastContainer, toast } from 'react-toastify';
 import '../css/ReactToastify.css';
 import { slide as Menu } from "react-burger-menu";
+import Footer from "./components/Footer";
 
 // CSS personnalisé
 import '../css/app.css';
@@ -63,7 +64,7 @@ const App = () => {
                 }
             </MenuWithRouter>
             <NavBarWithRouter />
-            <main className="container pt-5">
+            <main className="container-page container pt-5">
                 <Switch>
                     <Route path="/login" component={LoginPage}/>
                     <Route path="/register" component={RegisterPage}/>
@@ -74,6 +75,7 @@ const App = () => {
                     <Route path="/" component={HomePage}/>
                 </Switch>
             </main>
+            <Footer/>
         </HashRouter>
         <ToastContainer
         position="bottom-right"

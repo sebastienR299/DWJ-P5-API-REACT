@@ -12,7 +12,7 @@ const HomePage = (props) => {
                 <h1 className="display-3 color-secondary">Commençons &nbsp;&nbsp;<i className="ni ni-spaceship"></i></h1>
                 <p className="lead">Un gestionnaire de facture simple et intuitif, prenant en charge vos clients, leurs factures et toute une panoplie d'autres fonctionnalitées.</p>
                 <hr className="my-2" />
-                <p>Une fois l'inscription terminée, vous serez en mesure en gérer vos clients, leurs factures envoyées, payées, et annulées.</p>
+                <p>Une fois l'inscription terminée, vous serez en mesure de gérer vos clients, leurs factures envoyées, payées, et annulées...</p>
                 <p className="lead">
                 <Link to="/register" className="btn btn-primary text-center">Let's go !</Link>
                 </p>
